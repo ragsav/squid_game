@@ -35,8 +35,8 @@ rockPaperScissorLength = 5
 
 class Superpower(Enum):
 	EnhancedReflex = 1
-	SuperStrength = 2
-	EnhancedVision = 3
+	EnhancedVision = 2
+	SuperStrength = 3
 
 superpowerDescription = [
 	"Advantage in rock paper scissors. Get to know oppponents hand signs faster",

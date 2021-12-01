@@ -18,27 +18,48 @@ def mazeEscape(user):
 	while level < mazeLength:
 		print()
 		print()
-		print(Fore.CYAN+"Maze level : "+str(level+1)+"----------- superpower left : "+str(superpower))
-		userInput = int(input("Enter 1,2,3 for doors. 4 for superpower and 5 to quit :"))
-		if userInput==5:
+		print(Fore.CYAN+"Maze level : "+str(level+1)+"----------- superpower left : "+str(Superpower(user.currentSuperpower).name)+"->"+str(Superpower(user.currentSuperpower).value))
+		userInput = input("Enter 1,2,3 for doors. Enter 'power' for super power and 'q' to quit :")
+
+		door = -1
+		if userInput=="1":
+			door=1
+		elif userInput=="2":
+			door=2
+		elif userInput=="3":
+			door=3
+		elif userInput.strip().lower()=="power":
+			door=4
+		elif userInput.strip().lower()=="q" or userInput.strip().lower()=="quit":
+			door=5
+
+		print(door,userInput)
+		if door==-1:
+			print(Fore.RED+"Invalid input")
+		if door==5:
 			gameOver(user)
-		elif userInput==4:
+		elif door==4:
 			if superpower==0:
-				print(Fore.RED+"You dont have any superpower left. Please pick any door")
+				print(Fore.RED+str(Superpower(user.currentSuperpower))+" has no use in this level.")
 			else:
 				print(Fore.YELLOW+"You used a superpower")
 				print(Fore.GREEN+"You are promoted to next level !!")
 				superpower = superpower-1
 				level=level+1
-		elif maze1[level][userInput-1]==1:
+			
+		elif maze1[level][door-1]==1:
 			print(Fore.GREEN+"You picked correct door. Maze level : "+str(level+1)+" cleared")
 			level = level + 1
-		elif maze1[level][userInput-1]==0:
+		elif maze1[level][door-1]==0:
 			print(Fore.YELLOW+"The door you picked is a blocked door and can be passed")
 			print(Fore.YELLOW+"only by using superpower. Else you can retry selecting doors")
-		else:
+		elif maze1[level][door-1]==-1:
 			print(Fore.RED+"Oops you picked a danger door. Eliminated")
 			gameOver(user)
+		
+			
+		
+
 	user.currentStage = 1
 	user.saveGame()
 	print()
@@ -46,6 +67,6 @@ def mazeEscape(user):
 	print(Fore.YELLOW+"Bot : "+getBot(user)+" eliminated!")
 	print()
 	print()
-	choice = input("Continue playing? (yes/no)")
-	if choice.lower().strip()=="no"or choice.lower().strip()=="n":
-		gameOver()
+	# choice = input("Continue playing? (yes/no)")
+	# if choice.lower().strip()=="no"or choice.lower().strip()=="n":
+	# 	gameOver()
