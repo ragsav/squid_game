@@ -18,35 +18,35 @@ def mazeEscape(user):
 	while level < mazeLength:
 		print()
 		print()
-		print(Fore.CYAN+"Maze level : "+str(level+1)+"----------- superpower left : "+str(Superpower(user.currentSuperpower).name)+"->"+str(Superpower(user.currentSuperpower).value))
-		userInput = input("Enter 1,2,3 for doors. Enter 'power' for super power and 'q' to quit :")
-
-		door = -1
-		if userInput=="1":
-			door=1
-		elif userInput=="2":
-			door=2
-		elif userInput=="3":
-			door=3
+		print(Fore.CYAN+"Maze level : "+str(level+1)+"----------- superpower left : "+str(Superpower(user.currentSuperpower).name)+"->"+str(superpower))
+		userInput = input("Enter 1,2,3 for doors. Enter 'power' for superpower and 'q' to quit :")
+		door=-1
+		if userInput.strip().lower()=="q" or userInput.strip().lower()=="quit":
+			door=5
 		elif userInput.strip().lower()=="power":
 			door=4
-		elif userInput.strip().lower()=="q" or userInput.strip().lower()=="quit":
-			door=5
+		elif userInput.strip().lower()=="1":
+			door=1
+		elif userInput.strip().lower()=="2":
+			door=2
+		elif userInput.strip().lower()=="3":
+			door=3
 
-		print(door,userInput)
+
+
+
 		if door==-1:
 			print(Fore.RED+"Invalid input")
 		if door==5:
 			gameOver(user)
 		elif door==4:
 			if superpower==0:
-				print(Fore.RED+str(Superpower(user.currentSuperpower))+" has no use in this level.")
+				print(Fore.RED+str(Superpower(user.currentSuperpower).name)+" has no use in this level.")
 			else:
 				print(Fore.YELLOW+"You used a superpower")
 				print(Fore.GREEN+"You are promoted to next level !!")
 				superpower = superpower-1
 				level=level+1
-			
 		elif maze1[level][door-1]==1:
 			print(Fore.GREEN+"You picked correct door. Maze level : "+str(level+1)+" cleared")
 			level = level + 1
@@ -56,9 +56,7 @@ def mazeEscape(user):
 		elif maze1[level][door-1]==-1:
 			print(Fore.RED+"Oops you picked a danger door. Eliminated")
 			gameOver(user)
-		
-			
-		
+
 
 	user.currentStage = 1
 	user.saveGame()

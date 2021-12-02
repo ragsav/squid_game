@@ -17,24 +17,31 @@ def rockPaperScissor(user):
 	while level < rockPaperScissorLength:
 		print()
 		print()
-		print(Fore.CYAN+"Rock paper scissors level : "+str(level+1)+"----------- superpower left : "+str(Superpower(user.currentSuperpower).name)+"->"+str(superpower))
-		userInput = input("Enter rock, paper or scissors. Enter 'power' for super power and 'q' to quit :").lower()
+		print(Fore.CYAN+"Rock paper scissors level : "+str(level+1)+"----------- superpower left : "+str(Superpower(user.currentSuperpower).name)+"->"+str(Superpower(user.currentSuperpower).value))
+		userInput = input("Enter 'rock', 'paper' or 'scissors'. Enter 'power' for superpower and 'q' to quit :")
 		correctAnswer = (rockPaperScissor1[level]+1)%3 if rockPaperScissor1[level]+1 > 3 else rockPaperScissor1[level]+1
-		sign = -1
 
-		if userInput=="rock" or userInput=="r":
+		sign=-1
+		if userInput.strip().lower()=="q" or userInput.strip().lower()=="quit":
+			sign=5
+		elif userInput.strip().lower()=="power":
+			sign=4
+		elif userInput.strip().lower()=="rock" or userInput.strip().lower()=="r":
 			sign=1
-		elif userInput=="paper" or userInput=="p":
+		elif userInput.strip().lower()=="paper" or userInput.strip().lower()=="p":
 			sign=2
-		elif userInput=="scissors" or userInput=="s":
+		elif userInput.strip().lower()=="scissors" or userInput.strip().lower()=="s":
 			sign=3
+		
 
 
-		elif userInput=="q":
-			gameOver()
-		elif sign==-1:
+
+		if sign==-1:
 			print(Fore.RED+"Invalid input")
-		elif userInput=="power":
+
+		elif sign==5:
+			gameOver()
+		elif sign==4:
 			if superpower==0:
 				print(Fore.RED+str(Superpower(user.currentSuperpower).name)+" has no use in this level.")
 			else:

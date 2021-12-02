@@ -206,10 +206,10 @@ def main():
     
     
 def main2():
-	# winsound.PlaySound("C:/Users/Raghav/Desktop/squid game python/arcade_retro.wav", winsound.SND_ASYNC | winsound.SND_ALIAS )
+	winsound.PlaySound("C:/Users/Raghav/Desktop/squid game python/mid.wav", winsound.SND_ASYNC | winsound.SND_ALIAS )
 	# await play_file_async(DEFAULT_SONG, block=False)
 	# winsound.PlaySound(None, winsound.SND_ASYNC)
-	playsound('C:/Users/Raghav/Desktop/squid game python/arcade_retro.wav',False)
+	# playsound('C:/Users/Raghav/Desktop/squid game python/arcade_retro.wav',False)
 	intro()
 
 
